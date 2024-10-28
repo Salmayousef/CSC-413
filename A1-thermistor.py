@@ -18,8 +18,8 @@ SERIES_RESISTOR = 10000.0
 NOMINAL_RESISTANCE = 10000.0 # nominal resistance at nominal temperature
 NOMINAL_TEMPERATURE = 298.15 # temperature at which the nominal resistance is specified
 BETA = 3950.0 # Beta constant of the thermistor
-TEMP_MIN = 0  # Minimum temperature expected
-TEMP_MAX = 50  # Maximum temperature expected
+TEMP_MIN = 5  # Minimum temperature expected
+TEMP_MAX = 45  # Maximum temperature expected
 
 def calculate_temperature(sensor_value):
     R_thermistor = SERIES_RESISTOR * (1023.0 / sensor_value - 1)  # Thermistor resistance
