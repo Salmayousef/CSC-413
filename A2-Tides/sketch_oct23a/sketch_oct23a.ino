@@ -63,8 +63,8 @@ void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
 
   // Set speed and initial positions for steppers
-  stepper1.setSpeed(5);
-  stepper2.setSpeed(5);
+  stepper1.setSpeed(7);
+  stepper2.setSpeed(7);
   handleMoonPhase(moonPhase); // Initialize LEDs
 
 }
