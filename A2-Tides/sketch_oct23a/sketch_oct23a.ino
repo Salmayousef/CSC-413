@@ -14,7 +14,7 @@ float currentPositionMM = 0;
 
 // Define stepper motor connections
 Stepper stepper1(stepsPerRevolution, 9, 11, 10, 12);
-//Stepper stepper2(stepsPerRevolution, 3, 4, 5, 6);
+Stepper stepper2(stepsPerRevolution, 3, 5, 4, 6);
 
 // Define pins for moon phases LEDs
 int ledPin1 = A2;
@@ -64,7 +64,7 @@ void setup() {
 
   // Set speed and initial positions for steppers
   stepper1.setSpeed(5);
-  //stepper2.setSpeed(100);
+  stepper2.setSpeed(5);
   handleMoonPhase(moonPhase); // Initialize LEDs
 
 }
@@ -125,9 +125,14 @@ void simulateTide(TideData tides){
             Serial.print("Delta (mm): "); Serial.println(deltaMM);
             Serial.print("Steps to move: "); Serial.println(steps);
 
+            int direction = (steps >= 0) ? 1 : -1; // Determine the direction based on the sign of steps
 
-            stepper1.step(steps);  // Actuate stepper motor 1
-            //stepper2.step(steps);  // Actuate stepper motor 2
+            for (int i = 0; i < abs(steps); i++) {
+                stepper1.step(direction); // Step motor 1 forward or backward by 1 step
+                stepper2.step(direction); // Step motor 2 forward or backward by 1 step
+                delay(10); // Short delay to allow for stepper motors to respond; adjust as needed for your application
+            }
+
 
             // Update current position
             currentPositionMM = targetPositionMM;
