@@ -38,8 +38,6 @@ void loop() {
   unsigned long currentMillis = millis(); //time elapsed
   float temp = readThermistor1Temperature();
   float weather = readThermistor2Temperature();
-  float distance = sonar.ping_cm();
-  int messageCounter = 0;
 
   lcd.clear();
 
@@ -151,7 +149,7 @@ void loop() {
   clearRow(0);
 
   // wait for user to start painting
-  distance = sonar.ping_cm();
+  float distance = sonar.ping_cm();;
   while (distance > 15 || distance == 0){
     lcd.setCursor(0, 0);
     lcd.print("Start now!");
@@ -159,6 +157,7 @@ void loop() {
   }
 
   // wait for user to stop painting, repeat motivational messages
+  int messageCounter = 0;
   while (distance < 200 && distance != 0) {
     distance = sonar.ping_cm();
     delay(delayTime);
